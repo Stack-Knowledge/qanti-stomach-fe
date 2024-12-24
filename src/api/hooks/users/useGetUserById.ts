@@ -4,7 +4,7 @@ import { get, usersQueryKeys, usersUrl } from "@/api/libs";
 import { minutesToMs } from "@/utils";
 import { User } from "@/types/user";
 
-const useGetMe = (
+const useGetUserById = (
   id: number,
   options?: Omit<UseQueryOptions<User>, "queryKey">
 ) => {
@@ -17,4 +17,4 @@ const useGetMe = (
   });
 };
 
-export default useGetMe;
+export default useGetUserById;

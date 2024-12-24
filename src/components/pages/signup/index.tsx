@@ -9,11 +9,10 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Form, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
-import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import {
@@ -25,10 +24,22 @@ import {
 } from "@/components/ui/select";
 import { ActivityLevel, Gender } from "@/types/user";
 import { formSchema } from "./schema";
+import { usePostSignup } from "@/api";
+import Cookies from "js-cookie";
+import { useRouter } from "next/navigation";
 
 const SignupPage = () => {
+  const { push } = useRouter();
+
+  const { mutate } = usePostSignup({
+    onSuccess: (res) => {
+      Cookies.set("token", res.token);
+      push("/");
+    },
+  });
+
   function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
+    mutate(values);
   }
 
   const form = useForm<z.infer<typeof formSchema>>({
