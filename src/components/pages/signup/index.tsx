@@ -27,14 +27,21 @@ import { formSchema } from "./schema";
 import { usePostSignup } from "@/api";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
+import { useToast } from "@/hooks/use-toast";
 
 const SignupPage = () => {
   const { push } = useRouter();
+
+  const { toast } = useToast();
 
   const { mutate } = usePostSignup({
     onSuccess: (res) => {
       Cookies.set("token", res.token);
       push("/");
+      toast({
+        title: `Congratulations on signing up, ${form.watch("name")}!`,
+        description: "We will keep your personal information well.",
+      });
     },
   });
 
