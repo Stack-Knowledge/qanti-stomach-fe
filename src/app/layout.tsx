@@ -32,7 +32,6 @@ export default function RootLayout({
           "overflow-hidden"
         )}
       >
-        {/* Subtle border or texture */}
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
