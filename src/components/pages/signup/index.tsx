@@ -46,13 +46,6 @@ const SignupPage = () => {
     },
   });
 
-  useEffect(() => {
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = "auto";
-    };
-  }, []);
-
   return (
     <div className="flex items-center justify-center min-h-screen text-neutral-100 overflow-hidden">
       <motion.div
