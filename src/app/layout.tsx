@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import Providers from "./Providers";
+import { cn } from "@/lib/utils";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +18,30 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body
+        className={cn(
+          inter.className,
+          "flex",
+          "flex-col",
+          "items-center",
+          "justify-center",
+          "bg-neutral-950",
+          "text-neutral-100",
+          "min-h-screen",
+          "relative",
+          "overflow-hidden"
+        )}
+      >
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            backgroundImage:
+              "linear-gradient(to bottom, rgba(255,255,255,0.02), transparent)",
+          }}
+        />
+        {/* Providers for state management */}
+        <Providers>{children}</Providers>
+      </body>
     </html>
   );
 }
