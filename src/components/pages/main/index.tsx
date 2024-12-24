@@ -14,7 +14,6 @@ interface MainPageProps {
 }
 
 const MainPage = ({ user, stomachData }: MainPageProps) => {
-  console.log(stomachData);
   const [foodLogs, setFoodLogs] = useState<Stomach[]>(stomachData);
 
   const calculateStomachHeight = (food: Stomach) => {

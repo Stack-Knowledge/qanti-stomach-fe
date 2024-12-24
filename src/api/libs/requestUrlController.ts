@@ -5,6 +5,6 @@ export const usersUrl = {
 } as const;
 
 export const stomachUrl = {
-  postStomach: () => "/stomach",
+  postStomach: (id: number) => `/stomach/${id}`,
   getStomachById: (id: number) => `/stomach/${id}`,
 } as const;
