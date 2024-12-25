@@ -2,16 +2,16 @@ import { useMutation, UseMutationOptions } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 
 import { stomachQueryKeys, stomachUrl, post } from "@/api/libs";
-import { User, CreateUserDto } from "@/types/user";
+import { Stomach, CreateStomachDto } from "@/types/stomach";
 
 const usePostStomach = (
   id: number,
-  options?: UseMutationOptions<User, AxiosError, CreateUserDto>
+  options?: UseMutationOptions<Stomach, AxiosError, CreateStomachDto>
 ) =>
   useMutation({
-    mutationKey: stomachQueryKeys.postStomach(),
-    mutationFn: (data: CreateUserDto) =>
-      post<User>(stomachUrl.postStomach(id), data),
+    mutationKey: stomachQueryKeys.postStomach(id),
+    mutationFn: (data: CreateStomachDto) =>
+      post<Stomach>(stomachUrl.postStomach(id), data),
     ...options,
   });
 
