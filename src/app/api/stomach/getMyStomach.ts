@@ -17,6 +17,7 @@ export const getMyStomach = async (
         process.env.NEXT_PUBLIC_API_BASE_URL
       }/api/v1${stomachUrl.getStomachById(id)}`,
       {
+        cache: "no-store",
         headers: {
           Authorization: `Bearer ${token}`,
         },

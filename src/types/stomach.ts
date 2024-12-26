@@ -49,35 +49,18 @@ export interface Stomach {
   foodId: string;
 }
 
-export const getFoodCategoryColor = (category: string) => {
-  switch (category) {
-    case "밥/곡물류":
-      return "bg-yellow-500";
-    case "면/파스타류":
-      return "bg-pink-500";
-    case "빵/베이커리류":
-      return "bg-orange-500";
-    case "고기류":
-      return "bg-red-500";
-    case "해산물류":
-      return "bg-blue-500";
-    case "채소/샐러드류":
-      return "bg-green-500";
-    case "과일류":
-      return "bg-purple-500";
-    case "스프/국류":
-      return "bg-teal-500";
-    case "음료":
-      return "bg-cyan-500";
-    case "스낵/간식류":
-      return "bg-pink-300";
-    case "튀김류":
-      return "bg-yellow-300";
-    case "디저트류":
-      return "bg-purple-300";
-    case "유제품":
-      return "bg-gray-400";
-    default:
-      return "bg-gray-500";
-  }
+export const categoryColors: { [key: string]: string } = {
+  "밥/곡물류": "#F59E0B", // bg-yellow-500
+  "면/파스타류": "#EC4899", // bg-pink-500
+  "빵/베이커리류": "#FB923C", // bg-orange-500
+  고기류: "#EF4444", // bg-red-500
+  해산물류: "#3B82F6", // bg-blue-500
+  "채소/샐러드류": "#10B981", // bg-green-500
+  과일류: "#8B5CF6", // bg-purple-500
+  "스프/국류": "#14B8A6", // bg-teal-500
+  음료: "#06B6D4", // bg-cyan-500
+  "스낵/간식류": "#F9A8D4", // bg-pink-300
+  튀김류: "#FCD34D", // bg-yellow-300
+  디저트류: "#D8B4FE", // bg-purple-300
+  유제품: "#D1D5DB", // bg-gray-400
 };

@@ -11,8 +11,8 @@ const useGetStomachById = (
   return useQuery({
     queryKey: stomachQueryKeys.getStomachById(id),
     queryFn: () => get<Stomach[]>(stomachUrl.getStomachById(id)),
-    staleTime: minutesToMs(5),
-    gcTime: minutesToMs(5),
+    staleTime: minutesToMs(1),
+    gcTime: minutesToMs(1),
     ...options,
   });
 };
