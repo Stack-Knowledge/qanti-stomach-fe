@@ -151,15 +151,13 @@ const MainPage = ({ user, stomachData }: MainPageProps) => {
             <p className="text-gray-300 text-xl">{getFeedback()}</p>
 
             <p className="text-gray-600 ">
-              This result is a prediction based on the user's information.
+              This result is a prediction based on the users information.
             </p>
           </div>
 
-          {/* 먹은 음식 로그 리스트 */}
-
           <Accordion type="single" className="w-full" collapsible>
             {stomach.map((food) => (
-              <AccordionItem value={food.foodId}>
+              <AccordionItem key={food.foodId} value={food.foodId}>
                 <AccordionTrigger>{food.type}</AccordionTrigger>
                 <AccordionContent>Weight: {food.weight}g</AccordionContent>
                 <AccordionContent>Volume: {food.volume}</AccordionContent>

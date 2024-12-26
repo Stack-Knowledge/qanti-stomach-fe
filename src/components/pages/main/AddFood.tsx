@@ -66,7 +66,7 @@ function AddFood({ className, userId, setOpen, refetch }: AddFoodProps) {
           </SelectTrigger>
           <SelectContent className="bg-neutral-800 border border-neutral-700">
             {Object.keys(foodCategoryDensity).map((key) => (
-              <SelectItem value={key} className="text-neutral-100">
+              <SelectItem key={key} value={key} className="text-neutral-100">
                 {key}
               </SelectItem>
             ))}
