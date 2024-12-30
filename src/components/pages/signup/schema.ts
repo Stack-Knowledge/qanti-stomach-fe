@@ -39,4 +39,7 @@ export const formSchema = z.object({
     .number()
     .min(1, "Meal frequency must be at least 1")
     .max(10, "Meal frequency should not exceed 10 meals per day"),
+  check: z.boolean().refine((val) => val === true, {
+    message: "check must be true",
+  }),
 });

@@ -28,6 +28,7 @@ import { usePostSignup } from "@/api";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 import { useToast } from "@/hooks/use-toast";
+import { Checkbox } from "@/components/ui/checkbox";
 
 const SignupPage = () => {
   const { push } = useRouter();
@@ -61,6 +62,7 @@ const SignupPage = () => {
       gender: undefined,
       activityLevel: undefined,
       mealFrequency: undefined,
+      check: false,
     },
   });
 
@@ -395,6 +397,37 @@ const SignupPage = () => {
                     </p>
                   </FormMessage>
                 )}
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="check"
+            render={({ field, fieldState }) => (
+              <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4 shadow">
+                <FormControl>
+                  <Checkbox
+                    checked={field.value}
+                    onCheckedChange={field.onChange}
+                  />
+                </FormControl>
+                <div className="space-y-1 leading-none">
+                  <FormLabel>
+                    Do you agree with the use of personal information to
+                    calculate the volume?
+                  </FormLabel>
+                  <FormDescription>
+                    It is only used to improve the service.
+                  </FormDescription>
+                  {fieldState?.error && (
+                    <FormMessage>
+                      <p className="text-red-600 text-sm opacity-45">
+                        {fieldState.error.message}
+                      </p>
+                    </FormMessage>
+                  )}
+                </div>
               </FormItem>
             )}
           />
