@@ -24,6 +24,7 @@ import {
 import { Gender } from "@/types/user";
 import Image from "next/image";
 import { useToast } from "@/hooks/use-toast";
+import { motion } from "framer-motion";
 
 interface AlcoholFormData {
   weight: number;
@@ -56,6 +57,9 @@ const AlcoholPage = () => {
       setAlcoholTolerance(null);
       setSoju(null);
       setBeer(null);
+      toast({
+        title: "모든 값을 정상적으로 입력해주세요",
+      });
       return;
     }
 
@@ -273,14 +277,24 @@ const AlcoholPage = () => {
       </form>
 
       {alcoholTolerance && (
-        <div className="mt-6">
+        <motion.div
+          className="mt-6"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+        >
           <h2 className="text-xl font-semibold">
             당신이 섭취 가능한 알코올 용량: {alcoholTolerance.toFixed(2)}g
           </h2>
-        </div>
+        </motion.div>
       )}
       {soju && (
-        <div className="mt-6 flex items-center gap-4">
+        <motion.div
+          className="mt-6 flex items-center gap-4"
+          initial={{ x: -50, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
+        >
           <Image
             className="rounded-lg"
             src="/soju.png"
@@ -289,10 +303,15 @@ const AlcoholPage = () => {
             alt="soju"
           />
           <h2 className="text-xl font-semibold">소주로 환산하면? {soju}잔</h2>
-        </div>
+        </motion.div>
       )}
       {beer && (
-        <div className="mt-6 flex items-center gap-4">
+        <motion.div
+          className="mt-6 flex items-center gap-4"
+          initial={{ x: 50, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
+        >
           <Image
             className="rounded-lg"
             src="/beer.png"
@@ -301,23 +320,41 @@ const AlcoholPage = () => {
             alt="beer"
           />
           <h2 className="text-xl font-semibold">맥주로 환산하면? {beer}캔</h2>
-        </div>
+        </motion.div>
       )}
       {alcoholTolerance && (
-        <Button
-          className="w-full mt-4 bg-red-600 hover:bg-red-700"
-          onClick={handleInit}
+        <motion.div
+          className="w-full mt-4"
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
         >
-          초기화
-        </Button>
+          <Button
+            className="w-full bg-red-600 hover:bg-red-700"
+            onClick={handleInit}
+          >
+            초기화
+          </Button>
+        </motion.div>
       )}
       {alcoholTolerance && (
-        <Button
-          className="w-full mt-4 bg-green-600 hover:bg-green-700"
-          onClick={() => (window.location.href = "/alcohol/rank")}
+        <motion.div
+          className="w-full mt-4"
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{
+            delay: 0.2,
+            duration: 0.5,
+            ease: "easeOut",
+          }}
         >
-          🤔 내 주량은 상위 몇 %일까??
-        </Button>
+          <Button
+            className="w-full bg-green-600 hover:bg-green-700"
+            onClick={() => (window.location.href = "/alcohol/rank")}
+          >
+            🤔 내 주량은 상위 몇 %일까??
+          </Button>
+        </motion.div>
       )}
 
       {alcoholTolerance && (
