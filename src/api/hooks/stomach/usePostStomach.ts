@@ -9,9 +9,9 @@ const usePostStomach = (
   options?: UseMutationOptions<Stomach, AxiosError, CreateStomachDto>
 ) =>
   useMutation({
-    mutationKey: stomachQueryKeys.postStomach(id),
+    mutationKey: stomachQueryKeys.postStomach(),
     mutationFn: (data: CreateStomachDto) =>
-      post<Stomach>(stomachUrl.postStomach(id), data),
+      post<Stomach>(stomachUrl.postStomach(), data),
     ...options,
   });
 
