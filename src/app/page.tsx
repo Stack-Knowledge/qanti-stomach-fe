@@ -8,7 +8,5 @@ export default async function Home() {
   if (!userInfo?.id && userInfo?.id !== 0) redirect("/signup");
   const initialStomach = await getMyStomach();
 
-  console.log(initialStomach);
-
   return <MainPage user={userInfo} stomachData={initialStomach ?? []} />;
 }
