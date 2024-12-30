@@ -28,6 +28,7 @@ import { usePostSignup } from "@/api";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 import { useToast } from "@/hooks/use-toast";
+import { Checkbox } from "@/components/ui/checkbox";
 
 const SignupPage = () => {
   const { push } = useRouter();
@@ -61,6 +62,7 @@ const SignupPage = () => {
       gender: undefined,
       activityLevel: undefined,
       mealFrequency: undefined,
+      check: false,
     },
   });
 
@@ -102,62 +104,6 @@ const SignupPage = () => {
                 </FormControl>
                 <FormDescription className="text-neutral-500 text-sm mt-1">
                   This is your public display name.
-                </FormDescription>
-                <FormMessage />
-                {fieldState?.error && (
-                  <FormMessage>
-                    <p className="text-red-600 text-sm opacity-45">
-                      {fieldState.error.message}
-                    </p>
-                  </FormMessage>
-                )}
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="email"
-            render={({ field, fieldState }) => (
-              <FormItem>
-                <FormLabel className="text-neutral-300">Email</FormLabel>
-                <FormControl>
-                  <Input
-                    className="bg-neutral-800 border border-neutral-700 rounded-md py-2 px-4 text-neutral-100 placeholder-neutral-500 transition-all duration-300 focus:ring-2 focus:ring-indigo-200 focus:border-indigo-300 focus:scale-102"
-                    placeholder="Enter your email"
-                    {...field}
-                  />
-                </FormControl>
-                <FormDescription className="text-neutral-500 text-sm mt-1">
-                  We will never share your email with anyone.
-                </FormDescription>
-                <FormMessage />
-                {fieldState?.error && (
-                  <FormMessage>
-                    <p className="text-red-600 text-sm opacity-45">
-                      {fieldState.error.message}
-                    </p>
-                  </FormMessage>
-                )}
-              </FormItem>
-            )}
-          />
-
-          <FormField
-            control={form.control}
-            name="phone"
-            render={({ field, fieldState }) => (
-              <FormItem>
-                <FormLabel className="text-neutral-300">Phone Number</FormLabel>
-                <FormControl>
-                  <Input
-                    className="bg-neutral-800 border border-neutral-700 rounded-md py-2 px-4 text-neutral-100 placeholder-neutral-500 transition-all duration-300 focus:ring-2 focus:ring-indigo-200 focus:border-indigo-300 focus:scale-102"
-                    placeholder="Enter your phone number"
-                    {...field}
-                  />
-                </FormControl>
-                <FormDescription className="text-neutral-500 text-sm mt-1">
-                  Please enter your phone number with country code (e.g.,
-                  010-1234-5678).
                 </FormDescription>
                 <FormMessage />
                 {fieldState?.error && (
@@ -395,6 +341,104 @@ const SignupPage = () => {
                     </p>
                   </FormMessage>
                 )}
+              </FormItem>
+            )}
+          />
+
+          <div>
+            <span className="text-sm">
+              You can receive useful news from our service via email and phone
+              number!
+            </span>
+          </div>
+          <FormField
+            control={form.control}
+            name="email"
+            render={({ field, fieldState }) => (
+              <FormItem>
+                <FormLabel className="text-neutral-300">
+                  Email (Optional)
+                </FormLabel>
+                <FormControl>
+                  <Input
+                    className="bg-neutral-800 border border-neutral-700 rounded-md py-2 px-4 text-neutral-100 placeholder-neutral-500 transition-all duration-300 focus:ring-2 focus:ring-indigo-200 focus:border-indigo-300 focus:scale-102"
+                    placeholder="Enter your email"
+                    {...field}
+                  />
+                </FormControl>
+                <FormDescription className="text-neutral-500 text-sm mt-1">
+                  We will never share your email with anyone.
+                </FormDescription>
+                <FormMessage />
+                {fieldState?.error && (
+                  <FormMessage>
+                    <p className="text-red-600 text-sm opacity-45">
+                      {fieldState.error.message}
+                    </p>
+                  </FormMessage>
+                )}
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="phone"
+            render={({ field, fieldState }) => (
+              <FormItem>
+                <FormLabel className="text-neutral-300">
+                  Phone Number (Optional)
+                </FormLabel>
+                <FormControl>
+                  <Input
+                    className="bg-neutral-800 border border-neutral-700 rounded-md py-2 px-4 text-neutral-100 placeholder-neutral-500 transition-all duration-300 focus:ring-2 focus:ring-indigo-200 focus:border-indigo-300 focus:scale-102"
+                    placeholder="Enter your phone number"
+                    {...field}
+                  />
+                </FormControl>
+                <FormDescription className="text-neutral-500 text-sm mt-1">
+                  Please enter your phone number with country code (e.g.,
+                  010-1234-5678).
+                </FormDescription>
+                <FormMessage />
+                {fieldState?.error && (
+                  <FormMessage>
+                    <p className="text-red-600 text-sm opacity-45">
+                      {fieldState.error.message}
+                    </p>
+                  </FormMessage>
+                )}
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="check"
+            render={({ field, fieldState }) => (
+              <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4 shadow">
+                <FormControl>
+                  <Checkbox
+                    checked={field.value}
+                    onCheckedChange={field.onChange}
+                  />
+                </FormControl>
+                <div className="space-y-1 leading-none">
+                  <FormLabel>
+                    Do you agree with the use of personal information to
+                    calculate the volume?
+                  </FormLabel>
+                  <FormDescription>
+                    It is only used to improve the service.
+                  </FormDescription>
+                  {fieldState?.error && (
+                    <FormMessage>
+                      <p className="text-red-600 text-sm opacity-45">
+                        {fieldState.error.message}
+                      </p>
+                    </FormMessage>
+                  )}
+                </div>
               </FormItem>
             )}
           />

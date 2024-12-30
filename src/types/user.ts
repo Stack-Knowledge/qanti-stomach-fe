@@ -8,7 +8,7 @@ export type ActivityLevel =
 
 export interface CreateUserDto {
   name: string;
-  email: string;
+  email?: string;
   phone?: string;
   weight: number;
   height: number;

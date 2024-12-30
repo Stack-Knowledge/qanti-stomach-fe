@@ -4,9 +4,7 @@ import { stomachUrl } from "@/api/libs";
 import { cookies } from "next/headers";
 import { Stomach } from "@/types/stomach";
 
-export const getMyStomach = async (
-  id: number
-): Promise<Stomach[] | undefined> => {
+export const getMyStomach = async (): Promise<Stomach[] | undefined> => {
   const token = cookies().get("token")?.value;
 
   if (!token) return redirect("/signup");
@@ -15,7 +13,7 @@ export const getMyStomach = async (
     const res = await fetch(
       `${
         process.env.NEXT_PUBLIC_API_BASE_URL
-      }/api/v1${stomachUrl.getStomachById(id)}`,
+      }/api/v1${stomachUrl.getStomachById()}`,
       {
         cache: "no-store",
         headers: {

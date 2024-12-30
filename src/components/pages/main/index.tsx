@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Stomach, categoryColors } from "@/types/stomach";
 import { User } from "@/types/user";
 import useGetStomachById from "@/api/hooks/stomach/useGetStomachById";
@@ -42,9 +42,24 @@ interface MainPageProps {
 const MainPage = ({ user, stomachData }: MainPageProps) => {
   const [open, setOpen] = useState(false);
 
-  const { data: stomach, refetch } = useGetStomachById(user.id, {
+  const { data: stomach, refetch } = useGetStomachById({
     initialData: stomachData,
   });
+
+  const [isMobile, setIsMobile] = useState<boolean>(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 400);
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   if (!stomach || !user) return;
 
@@ -108,38 +123,71 @@ const MainPage = ({ user, stomachData }: MainPageProps) => {
 
       {stomach && (
         <>
-          <div className="min-h-fit">
-            <Table>
-              <TableCaption>Your stomach</TableCaption>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>INDEX</TableHead>
-                  <TableHead>CATEGORY</TableHead>
-                  <TableHead>WEIGHT</TableHead>
-                  <TableHead>VOLUME</TableHead>
-                  <TableHead>RATIO</TableHead>
-                </TableRow>
-              </TableHeader>
-
-              <TableBody>
-                {[...stomach].reverse().map((food, index) => (
-                  <TableRow key={food.foodId}>
-                    <TableCell className="font-medium">
-                      {stomach.length - 1 - index}
-                    </TableCell>
-                    <TableCell>
-                      <Badge style={{ background: categoryColors[food.type] }}>
-                        {food.type}
-                      </Badge>
-                    </TableCell>
-                    <TableCell>{food.weight}(g)</TableCell>
-                    <TableCell>{food.volume.toFixed(2)}(cm3)</TableCell>
-                    <TableCell>{food.ratio.toFixed(2)}(%)</TableCell>
+          {isMobile ? (
+            <div className="space-y-4">
+              {[...stomach].reverse().map((food, index) => (
+                <div
+                  key={food.foodId}
+                  className="p-4 bg-white shadow rounded-lg border"
+                >
+                  <h3
+                    style={{ background: categoryColors[food.type] }}
+                    className="text-xl font-semibold text-gray-900 opacity-50 w-fit"
+                  >
+                    {stomach.length - 1 - index}. {food.type}
+                  </h3>
+                  <div className="mt-2">
+                    <div className="flex justify-between">
+                      <span className="text-gray-900">
+                        Weight: {food.weight}(g)
+                      </span>
+                      <span className="text-gray-900">
+                        Volume: {food.volume.toFixed(2)} cm³
+                      </span>
+                    </div>
+                    <div className="mt-1 text-gray-900">
+                      <span>Ratio: {food.ratio.toFixed(2)}%</span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="min-h-fit">
+              <Table>
+                <TableCaption>Your stomach</TableCaption>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>INDEX</TableHead>
+                    <TableHead>CATEGORY</TableHead>
+                    <TableHead>WEIGHT</TableHead>
+                    <TableHead>VOLUME</TableHead>
+                    <TableHead>RATIO</TableHead>
                   </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </div>
+                </TableHeader>
+
+                <TableBody>
+                  {[...stomach].reverse().map((food, index) => (
+                    <TableRow key={food.foodId}>
+                      <TableCell className="font-medium">
+                        {stomach.length - 1 - index}
+                      </TableCell>
+                      <TableCell>
+                        <Badge
+                          style={{ background: categoryColors[food.type] }}
+                        >
+                          {food.type}
+                        </Badge>
+                      </TableCell>
+                      <TableCell>{food.weight}(g)</TableCell>
+                      <TableCell>{food.volume.toFixed(2)}(cm3)</TableCell>
+                      <TableCell>{food.ratio.toFixed(2)}(%)</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </div>
+          )}
 
           <div className="w-full max-w-md space-y-4">
             <h2 className="text-xl font-semibold text-neutral-100">Total</h2>
