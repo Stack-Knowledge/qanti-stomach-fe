@@ -121,7 +121,9 @@ const SignupPage = () => {
             name="email"
             render={({ field, fieldState }) => (
               <FormItem>
-                <FormLabel className="text-neutral-300">Email</FormLabel>
+                <FormLabel className="text-neutral-300">
+                  Email (Optional)
+                </FormLabel>
                 <FormControl>
                   <Input
                     className="bg-neutral-800 border border-neutral-700 rounded-md py-2 px-4 text-neutral-100 placeholder-neutral-500 transition-all duration-300 focus:ring-2 focus:ring-indigo-200 focus:border-indigo-300 focus:scale-102"
@@ -149,7 +151,9 @@ const SignupPage = () => {
             name="phone"
             render={({ field, fieldState }) => (
               <FormItem>
-                <FormLabel className="text-neutral-300">Phone Number</FormLabel>
+                <FormLabel className="text-neutral-300">
+                  Phone Number (Optional)
+                </FormLabel>
                 <FormControl>
                   <Input
                     className="bg-neutral-800 border border-neutral-700 rounded-md py-2 px-4 text-neutral-100 placeholder-neutral-500 transition-all duration-300 focus:ring-2 focus:ring-indigo-200 focus:border-indigo-300 focus:scale-102"

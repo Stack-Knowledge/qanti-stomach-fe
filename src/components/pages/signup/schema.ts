@@ -5,13 +5,13 @@ export const formSchema = z.object({
     .string()
     .min(2, "Name must be at least 2 characters")
     .max(15, "Name must be no longer than 15 characters"),
-  email: z.string().email("Please enter a valid email address"),
+  email: z.string().email("Please enter a valid email address").optional(), // 이메일 필드를 옵셔널로 설정
   phone: z
     .string()
-    .optional()
+    .optional() // 전화번호 필드를 옵셔널로 설정
     .refine(
-      (val) => !val || val.length === 13,
-      "Phone number must be 10 digits if provided"
+      (val) => !val || val.length === 13, // 값이 없거나 13자여야 함
+      "Phone number must be 13 digits if provided"
     ),
   weight: z.number().min(1, "Weight must be greater than 0"),
   height: z.number().min(1, "Height must be greater than 0"),
