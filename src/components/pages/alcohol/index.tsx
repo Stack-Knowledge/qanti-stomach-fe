@@ -47,6 +47,16 @@ const AlcoholPage = () => {
   const [beer, setBeer] = useState<number | null>(null);
   const { toast } = useToast();
 
+  const scrollToElement = () => {
+    const targetElement = document.getElementById("target-element");
+    if (targetElement) {
+      targetElement.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  };
+
   const calculateAlcoholTolerance = (data: AlcoholFormData) => {
     const weight = Number(data.weight);
     const height = Number(data.height);
@@ -84,6 +94,9 @@ const AlcoholPage = () => {
 
       return;
     }
+
+    console.log("test");
+    setTimeout(scrollToElement, 1000);
 
     setAlcoholTolerance(alcoholToleranceValue);
 
@@ -269,6 +282,7 @@ const AlcoholPage = () => {
         />
 
         <Button
+          id="target-element"
           type="submit"
           className="w-full mt-4 bg-yellow-600 hover:bg-yellow-700"
         >
