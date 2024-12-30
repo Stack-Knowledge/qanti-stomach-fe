@@ -319,6 +319,30 @@ const AlcoholPage = () => {
           초기화
         </Button>
       )}
+
+      {alcoholTolerance && (
+        <div className="bg-blue-50 p-6 rounded-lg shadow-lg max-w-2xl mx-auto text-center">
+          <p className="text-xl font-semibold text-gray-800 mb-2">
+            🍻 술 한잔? 그럼 안주도 제대로 먹어야지!
+          </p>
+          <p className="text-lg text-gray-700 mb-4">
+            지금 내 뱃속은?? <br />
+            내가 먹은 음식의 비례 용적량을 계산하고, 소화가 언제 될지 예측하는
+            서비스를 경험해 보세요. 🍴
+          </p>
+          <p className="text-md text-gray-600 mb-4">
+            하.. 배부르긴 한데.. 지금 내 위 용량 대비 정확히 얼마나 먹은거지? 더
+            먹고싶긴해..
+          </p>
+          <Button
+            className="bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-6 rounded-lg transition-all"
+            onClick={() => (window.location.href = "/signup")}
+          >
+            지금 바로 내 뱃속 수치를 알아보세요!
+          </Button>
+          <p className="mt-4 text-sm text-red-600">현재 테스트 버전입니다.</p>
+        </div>
+      )}
     </div>
   );
 };
