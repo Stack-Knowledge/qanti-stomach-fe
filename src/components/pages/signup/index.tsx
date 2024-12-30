@@ -116,66 +116,6 @@ const SignupPage = () => {
               </FormItem>
             )}
           />
-          <FormField
-            control={form.control}
-            name="email"
-            render={({ field, fieldState }) => (
-              <FormItem>
-                <FormLabel className="text-neutral-300">
-                  Email (Optional)
-                </FormLabel>
-                <FormControl>
-                  <Input
-                    className="bg-neutral-800 border border-neutral-700 rounded-md py-2 px-4 text-neutral-100 placeholder-neutral-500 transition-all duration-300 focus:ring-2 focus:ring-indigo-200 focus:border-indigo-300 focus:scale-102"
-                    placeholder="Enter your email"
-                    {...field}
-                  />
-                </FormControl>
-                <FormDescription className="text-neutral-500 text-sm mt-1">
-                  We will never share your email with anyone.
-                </FormDescription>
-                <FormMessage />
-                {fieldState?.error && (
-                  <FormMessage>
-                    <p className="text-red-600 text-sm opacity-45">
-                      {fieldState.error.message}
-                    </p>
-                  </FormMessage>
-                )}
-              </FormItem>
-            )}
-          />
-
-          <FormField
-            control={form.control}
-            name="phone"
-            render={({ field, fieldState }) => (
-              <FormItem>
-                <FormLabel className="text-neutral-300">
-                  Phone Number (Optional)
-                </FormLabel>
-                <FormControl>
-                  <Input
-                    className="bg-neutral-800 border border-neutral-700 rounded-md py-2 px-4 text-neutral-100 placeholder-neutral-500 transition-all duration-300 focus:ring-2 focus:ring-indigo-200 focus:border-indigo-300 focus:scale-102"
-                    placeholder="Enter your phone number"
-                    {...field}
-                  />
-                </FormControl>
-                <FormDescription className="text-neutral-500 text-sm mt-1">
-                  Please enter your phone number with country code (e.g.,
-                  010-1234-5678).
-                </FormDescription>
-                <FormMessage />
-                {fieldState?.error && (
-                  <FormMessage>
-                    <p className="text-red-600 text-sm opacity-45">
-                      {fieldState.error.message}
-                    </p>
-                  </FormMessage>
-                )}
-              </FormItem>
-            )}
-          />
 
           <FormField
             control={form.control}
@@ -392,6 +332,73 @@ const SignupPage = () => {
                 </FormControl>
                 <FormDescription className="text-neutral-500 text-sm mt-1">
                   Please enter the number of meals you eat per day.
+                </FormDescription>
+                <FormMessage />
+                {fieldState?.error && (
+                  <FormMessage>
+                    <p className="text-red-600 text-sm opacity-45">
+                      {fieldState.error.message}
+                    </p>
+                  </FormMessage>
+                )}
+              </FormItem>
+            )}
+          />
+
+          <div>
+            <span className="text-sm">
+              You can receive useful news from our service via email and phone
+              number!
+            </span>
+          </div>
+          <FormField
+            control={form.control}
+            name="email"
+            render={({ field, fieldState }) => (
+              <FormItem>
+                <FormLabel className="text-neutral-300">
+                  Email (Optional)
+                </FormLabel>
+                <FormControl>
+                  <Input
+                    className="bg-neutral-800 border border-neutral-700 rounded-md py-2 px-4 text-neutral-100 placeholder-neutral-500 transition-all duration-300 focus:ring-2 focus:ring-indigo-200 focus:border-indigo-300 focus:scale-102"
+                    placeholder="Enter your email"
+                    {...field}
+                  />
+                </FormControl>
+                <FormDescription className="text-neutral-500 text-sm mt-1">
+                  We will never share your email with anyone.
+                </FormDescription>
+                <FormMessage />
+                {fieldState?.error && (
+                  <FormMessage>
+                    <p className="text-red-600 text-sm opacity-45">
+                      {fieldState.error.message}
+                    </p>
+                  </FormMessage>
+                )}
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="phone"
+            render={({ field, fieldState }) => (
+              <FormItem>
+                <FormLabel className="text-neutral-300">
+                  Phone Number (Optional)
+                </FormLabel>
+                <FormControl>
+                  <Input
+                    className="bg-neutral-800 border border-neutral-700 rounded-md py-2 px-4 text-neutral-100 placeholder-neutral-500 transition-all duration-300 focus:ring-2 focus:ring-indigo-200 focus:border-indigo-300 focus:scale-102"
+                    placeholder="Enter your phone number"
+                    {...field}
+                  />
+                </FormControl>
+                <FormDescription className="text-neutral-500 text-sm mt-1">
+                  Please enter your phone number with country code (e.g.,
+                  010-1234-5678).
                 </FormDescription>
                 <FormMessage />
                 {fieldState?.error && (

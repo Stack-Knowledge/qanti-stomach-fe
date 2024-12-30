@@ -42,7 +42,7 @@ interface MainPageProps {
 const MainPage = ({ user, stomachData }: MainPageProps) => {
   const [open, setOpen] = useState(false);
 
-  const { data: stomach, refetch } = useGetStomachById(user.id, {
+  const { data: stomach, refetch } = useGetStomachById({
     initialData: stomachData,
   });
 

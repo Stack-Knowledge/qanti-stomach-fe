@@ -6,7 +6,9 @@ import { redirect } from "next/navigation";
 export default async function Home() {
   const userInfo = await getMe();
   if (!userInfo?.id && userInfo?.id !== 0) redirect("/signup");
-  const initialStomach = await getMyStomach(userInfo.id);
+  const initialStomach = await getMyStomach();
+
+  console.log(initialStomach);
 
   return <MainPage user={userInfo} stomachData={initialStomach ?? []} />;
 }

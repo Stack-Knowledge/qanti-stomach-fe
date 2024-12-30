@@ -4,6 +4,6 @@ export const usersQueryKeys = {
 } as const;
 
 export const stomachQueryKeys = {
-  postStomach: (id: number) => ["stomach", "post", id],
-  getStomachById: (id: number) => ["stomach", "get", id],
+  postStomach: () => ["stomach", "post"],
+  getStomachById: () => ["stomach", "get"],
 } as const;
