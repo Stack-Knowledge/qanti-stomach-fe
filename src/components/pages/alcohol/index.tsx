@@ -1,10 +1,9 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import { useForm, Controller } from "react-hook-form";
+import React, { useState } from "react";
+import { useForm } from "react-hook-form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
   FormControl,
@@ -28,7 +27,7 @@ import { useToast } from "@/hooks/use-toast";
 
 interface AlcoholFormData {
   weight: number;
-  height: number; // 키 (cm)
+  height: number;
   gender: "MALE" | "FEMALE" | "";
   hours: number;
   aldh2Mutation: boolean;
@@ -50,10 +49,9 @@ const AlcoholPage = () => {
   const calculateAlcoholTolerance = (data: AlcoholFormData) => {
     const weight = Number(data.weight);
     const height = Number(data.height);
-    const hours = 24; // 24시간을 기준으로 설정
+    const hours = 24;
     const { gender, aldh2Mutation, hasEaten } = data;
 
-    // 유효성 검사: weight와 height가 올바른 값인지 확인
     if (isNaN(weight) || isNaN(height) || height === 0) {
       setAlcoholTolerance(null);
       setSoju(null);
@@ -64,17 +62,13 @@ const AlcoholPage = () => {
     const heightInMeters = height / 100;
     const bmi = weight / (heightInMeters * heightInMeters);
 
-    // 성별에 따른 기본 알콜 내성 비율 설정
-    let baseRate = gender === "MALE" ? 0.68 : 0.55; // 남성, 여성 기본 비율
-    if (aldh2Mutation) baseRate *= 0.8; // ALDH2 돌연변이 고려
+    let baseRate = gender === "MALE" ? 0.68 : 0.55;
+    if (aldh2Mutation) baseRate *= 0.8;
 
-    // 알콜 내성 계산 (kg 단위의 체중을 기준으로)
-    let alcoholToleranceValue = (weight * baseRate * hours) / 10; // hours는 24시간으로 고정
+    let alcoholToleranceValue = (weight * baseRate * hours) / 10;
 
-    // 식사를 했으면 10% 감소
     if (hasEaten) alcoholToleranceValue *= 0.9;
 
-    // 계산된 값이 비정상적인지 확인
     if (isNaN(alcoholToleranceValue) || alcoholToleranceValue <= 0) {
       setAlcoholTolerance(null);
       setSoju(null);
@@ -87,12 +81,10 @@ const AlcoholPage = () => {
       return;
     }
 
-    // 알콜 내성 값 상태로 설정
     setAlcoholTolerance(alcoholToleranceValue);
 
-    // 소주 1잔 = 7g 알콜, 맥주 1캔 = 10g 알콜 기준으로 계산
-    const sojuTolerance = Math.ceil(alcoholToleranceValue / 7); // 올림 처리
-    const beerTolerance = Math.ceil(alcoholToleranceValue / 15); // 올림 처리
+    const sojuTolerance = Math.ceil(alcoholToleranceValue / 7);
+    const beerTolerance = Math.ceil(alcoholToleranceValue / 15);
 
     setSoju(sojuTolerance);
     setBeer(beerTolerance);
@@ -317,6 +309,14 @@ const AlcoholPage = () => {
           onClick={handleInit}
         >
           초기화
+        </Button>
+      )}
+      {alcoholTolerance && (
+        <Button
+          className="w-full mt-4 bg-green-600 hover:bg-green-700"
+          onClick={() => (window.location.href = "/alcohol/rank")}
+        >
+          🤔 내 주량은 상위 몇 %일까??
         </Button>
       )}
 
