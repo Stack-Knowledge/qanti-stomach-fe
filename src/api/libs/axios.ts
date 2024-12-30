@@ -15,7 +15,6 @@ export const axiosInstance = () => {
       if (token) {
         config.headers.Authorization = `Bearer ${token}`;
       }
-      console.log(config.url);
       return config;
     },
     (error) => Promise.reject(error)
@@ -31,7 +30,6 @@ export const axiosInstance = () => {
     async (error) => {
       const originalRequest = error.config;
 
-      console.error("Axios Error", error, originalRequest);
       return Promise.reject(error);
     }
   );
