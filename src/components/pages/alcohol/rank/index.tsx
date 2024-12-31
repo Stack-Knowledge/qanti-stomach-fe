@@ -29,7 +29,7 @@ const RankPage = () => {
       percentile = 98 + Math.floor(((totalAlcohol - 160) / 40) * 2);
     }
 
-    return setAlcoholTolerance((prev) => Math.min(percentile, 0));
+    return setAlcoholTolerance(Math.min(percentile, 0));
   };
 
   const handleInit = () => {
