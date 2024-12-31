@@ -383,7 +383,7 @@ const AlcoholPage = () => {
           </p>
           <p className="text-md text-gray-600 mb-4">
             하.. 배부르긴 한데.. 지금 내 위 용량 대비 정확히 얼마나 먹은거지? 더
-            먹고싶긴해..
+            먹고싶긴해.. 곧 플레이스토어에도 출시된다고??
           </p>
           <Button
             className="bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-6 rounded-lg transition-all"
