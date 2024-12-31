@@ -40,12 +40,10 @@ export default function RootLayout({
           "flex",
           "flex-col",
           "items-center",
-          "justify-center",
           "bg-neutral-950",
           "text-neutral-100",
-          "min-h-screen",
-          "relative",
-          "overflow-hidden"
+          "min-h-[100dvh]",
+          "relative"
         )}
       >
         <div
