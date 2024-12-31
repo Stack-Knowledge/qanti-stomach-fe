@@ -141,7 +141,13 @@ const RankPage = () => {
           </p>
           <Button
             className="bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-6 rounded-lg transition-all"
-            onClick={() => (window.location.href = "/signup")}
+            onClick={() => {
+              // (window.location.href = "/signup")
+              toast({
+                title:
+                  "비용 문제로 다운되었습니다. 빠른 시일 내에 찾아뵙겠습니다.",
+              });
+            }}
           >
             지금 바로 내 뱃속 수치를 알아보세요!
           </Button>

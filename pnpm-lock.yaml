@@ -44,6 +44,9 @@ dependencies:
   '@tanstack/react-query-next-experimental':
     specifier: ^5.32.0
     version: 5.62.9(@tanstack/react-query@5.62.9)(next@14.1.2)(react@18.3.1)
+  '@types/gtag.js':
+    specifier: ^0.0.20
+    version: 0.0.20
   '@types/js-cookie':
     specifier: ^3.0.6
     version: 3.0.6
@@ -1103,6 +1106,10 @@ packages:
     dependencies:
       '@tanstack/query-core': 5.62.9
       react: 18.3.1
+    dev: false
+
+  /@types/gtag.js@0.0.20:
+    resolution: {integrity: sha512-wwAbk3SA2QeU67unN7zPxjEHmPmlXwZXZvQEpbEUQuMCRGgKyE1m6XDuTUA9b6pCGb/GqJmdfMOY5LuDjJSbbg==}
     dev: false
 
   /@types/js-cookie@3.0.6:
